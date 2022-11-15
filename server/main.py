@@ -2,14 +2,14 @@
 """
 Main module which calls the flask environment and program logic
 """
-
+from app import app
 from flask import Flask, jsonify
 
 
-app = Flask(__name__)
+server = Flask(__name__)
+server.register_blueprint(app)
 
-
-@app.errorhandler(404)
+@server.errorhandler(404)
 def error404(error):
     """error 404 handler"""
     return jsonify({"error": "Not found"}), 404
@@ -18,4 +18,4 @@ def error404(error):
 if __name__ == "__main__":
     host = "127.0.0.1"
     port = 5000
-    app.run(host=host, port=port, threaded=True)
+    server.run(host=host, port=port, threaded=True)
