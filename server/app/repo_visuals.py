@@ -5,9 +5,10 @@ Repo Visuals
     per language a user would like to see using Ploty as its data visualization
     tool.
 """
-import requests
 from plotly.graph_objects import Bar
 from plotly import offline
+import requests
+
 
 # Make an API call and store the response
 url = 'https://api.github.com/search/repositories?q=language:python&sort=stars'
