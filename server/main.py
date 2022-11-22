@@ -4,7 +4,21 @@ Main module which calls the flask environment and program logic
 """
 from app import app
 from flask import Flask, jsonify
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
+
+sentry_sdk.init(
+    dsn="https://931c99850545422d884595637d052617@o4504176793747456.ingest.sentry.io/4504176806133764",
+    integrations=[
+        FlaskIntegration(),
+    ],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=0
+)
 
 server = Flask(__name__)
 server.register_blueprint(app)
