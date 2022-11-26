@@ -30,6 +30,4 @@ def error404(error):
 
 
 if __name__ == "__main__":
-    host = "127.0.0.1"
-    port = 5000
-    server.run(host=host, port=port, threaded=True)
+    server.run()
