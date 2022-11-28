@@ -2,7 +2,7 @@
 
 This directory contains files and folders for the server section of the project.
 
-## Backend Requirements
+## Server Requirements
 
 * [Docker](https://www.docker.com/).
 * [Docker Compose](https://docs.docker.com/compose/install/).
@@ -18,9 +18,9 @@ To start a shell session with Poetry, run:
 $ poetry shell
 ```
 
-in the project root: `./github-stars-visualizer`.
+in the server directory: `/server`.
 
-From the project root, you can install all the dependencies with:
+From `/server`, you can install all the dependencies with:
 
 ```console
 $ poetry install
@@ -28,6 +28,17 @@ $ poetry install
 
 This should be done after activating the shell.
 
-Next, open your editor at the project root so that you can see an `./app` directory alongside the `./tests` directory with the project code alongside other project files. That way, your editor would be able to locate all imports etc. Make sure your editor uses the environment you just created with Poetry.
+Next, open your editor at the project root, `./github-stars-visualizer`, so that you can see the `./server`, `./tests` and other project directories and files. That way, your editor would be able to locate all imports. Make sure your editor uses the environment you just created with Poetry.
+
+## Code contributions
 
 While making contributions to the code, make sure you're working on the `updates` branch as pushes to the `main` branch are not allowed to avoid merge conflicts on the `main` branch.
+
+## Endpoints
+
+The following are the endpoints for the server-side of the project:
+
+* /api/v1/top_starred_repos
+* /api/v1/language/<language>
+* /api/v1/owner/  [in view]
+* /api/v1/organizations  [in view]
