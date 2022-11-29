@@ -8,7 +8,7 @@ This directory contains files and folders for the server section of the project.
 * [Docker Compose](https://docs.docker.com/compose/install/).
 * [Poetry](https://python-poetry.org/) for Python package and environment management.
 
-### General workflow
+## General workflow
 
 By default, the dependencies are managed with [Poetry](https://python-poetry.org/). Make sure to visit the URL and install Poetry if you don't have it on your system.
 
@@ -29,6 +29,13 @@ $ poetry install
 This should be done after activating the shell.
 
 Next, open your editor at the project root, `./github-stars-visualizer`, so that you can see the `./server`, `./tests` and other project directories and files. That way, your editor would be able to locate all imports. Make sure your editor uses the environment you just created with Poetry.
+
+To run the backend, run
+```console
+./server/main.py
+```
+
+in the root of the project on your terminal so as to test the endpoints available.
 
 ## Code contributions
 
