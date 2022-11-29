@@ -24,3 +24,9 @@
   bottom: -46px;
   background-color: black;
 } */
+
+#explore-button{
+  border-radius: 0.5rem;
+  background-color: blue;
+  padding: 0.5rem 3rem;
+}
