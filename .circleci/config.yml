@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   python: circleci/python@1.5.0
   docker: circleci/docker@2.0.1
-  node: circleci/node:16.
+  # node: circleci/node:16.
 
 jobs:
   # lint:
@@ -70,7 +70,7 @@ workflows:
           # deploy: false
           # image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
       - deploy:
-          context: dockerhub
+          context: gitstars
           # requires:
             # - lint
             # - test
