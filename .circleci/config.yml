@@ -1,0 +1,77 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@1.5.0
+  docker: circleci/docker@2.0.1
+  node: circleci/node:16.
+
+jobs:
+  lint:
+    executor: python/default
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install Python deps in a venv
+          command: |
+            python3 -m venv env
+            . env/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: "Run pylint"
+          command: |
+            . env/bin/activate
+            pycodestyle app.py
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "env"
+  test:
+    executor: python/default
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install Python deps in a venv
+          command: |
+            python3 -m venv env
+            . env/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: "Run tests"
+          command: |
+            pip install -r requirements.txt
+            python3 test.py
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "env"
+  # deploy:
+  #   machine: true
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Build and push Docker image to Heroku
+  #         command: |
+  #           sudo curl https://cli-assets.heroku.com/install.sh | sh
+  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a funkycadet-github-data-visualizer web
+  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a funkycadet-github-data-visualizer web
+workflows:
+  lint-test-build-deploy:
+    jobs:
+      - lint
+      - test
+      - docker/publish:
+          deploy: false
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      - deploy:
+          requires:
+            - lint
+            - test
+            - docker/publish
+          filters:
+            branches:
+              only: main
