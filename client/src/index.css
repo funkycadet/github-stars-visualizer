@@ -24,3 +24,21 @@
   bottom: -46px;
   background-color: black;
 } */
+
+.explore-button{
+  height: 4rem;
+  background-color: #586fba;
+  width: 18%;
+  border: none;
+  border-radius: 0.5rem;
+  color: black;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+}
+
+.get-started{
+  height: 12rem;
+  margin: 0;
+}
