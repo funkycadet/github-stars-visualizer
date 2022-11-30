@@ -6,48 +6,48 @@ orbs:
   node: circleci/node:16.
 
 jobs:
-  lint:
-    executor: python/default
-    steps:
-      - checkout
-      - restore_cache:
-          # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install Python deps in a venv
-          command: |
-            python3 -m venv env
-            . env/bin/activate
-            pip install -r requirements.txt
-      - run:
-          name: "Run pylint"
-          command: |
-            . env/bin/activate
-            pycodestyle app.py
-      - save_cache:
-          # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "env"
-  test:
-    executor: python/default
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install Python deps in a venv
-          command: |
-            python3 -m venv env
-            . env/bin/activate
-            pip install -r requirements.txt
-      - run:
-          name: "Run tests"
-          command: |
-            pip install -r requirements.txt
-            python3 test.py
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
-          paths:
-            - "env"
+  # lint:
+  #   executor: python/default
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+  #     - run:
+  #         name: Install Python deps in a venv
+  #         command: |
+  #           python3 -m venv env
+  #           . env/bin/activate
+  #           pip install -r requirements.txt
+  #     - run:
+  #         name: "Run pylint"
+  #         command: |
+  #           . env/bin/activate
+  #           pycodestyle app.py
+  #     - save_cache:
+  #         # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+  #         paths:
+  #           - "env"
+  # test:
+  #   executor: python/default
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  #         key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+  #     - run:
+  #         name: Install Python deps in a venv
+  #         command: |
+  #           python3 -m venv env
+  #           . env/bin/activate
+  #           pip install -r requirements.txt
+  #     - run:
+  #         name: "Run tests"
+  #         command: |
+  #           pip install -r requirements.txt
+  #           python3 test.py
+  #     - save_cache:
+  #         key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+  #         paths:
+  #           - "env"
   deploy:
     docker:
       - image: cimg/base:2022.08
@@ -64,17 +64,17 @@ jobs:
 workflows:
   lint-test-build-deploy:
     jobs:
-      - lint
-      - test
-      - docker/publish:
-          deploy: false
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      # - lint
+      # - test
+      # - docker/publish:
+          # deploy: false
+          # image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
       - deploy:
           context: dockerhub
-          requires:
-            - lint
-            - test
-            - docker/publish
+          # requires:
+            # - lint
+            # - test
+            # - docker/publish
           filters:
             branches:
               only: main
