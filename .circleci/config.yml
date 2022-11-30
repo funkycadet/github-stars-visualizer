@@ -52,9 +52,15 @@ jobs:
     docker:
       - image: cimg/base:2022.08
     environment:
-      IMAGE_NAME: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      # IMAGE_NAME: "$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
+      IMAGE_NAME: funkycadet/gitstars
     steps:
       - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker Images
+          command: |
+            docker build -t $IMAGE_NAME:v0.1.0 ./server
       - run:
           name: Deploy images to DockerHub
           command: |
