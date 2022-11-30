@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
           name: Install Python deps in a venv
           command: |
@@ -24,7 +24,7 @@ jobs:
             . env/bin/activate
             pycodestyle app.py
       - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          # key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
             - "env"
   test:
@@ -48,17 +48,19 @@ jobs:
           key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
             - "env"
-  # deploy:
-  #   machine: true
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Build and push Docker image to Heroku
-  #         command: |
-  #           sudo curl https://cli-assets.heroku.com/install.sh | sh
-  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
-  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a funkycadet-github-data-visualizer web
-  #           HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a funkycadet-github-data-visualizer web
+  deploy:
+    docker:
+      - image: cimg/base:2022.08
+    environment:
+      IMAGE_NAME: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+    steps:
+      - checkout
+      - run:
+          name: Deploy images to DockerHub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $IMAGE_NAME:v0.1.0
+
 workflows:
   lint-test-build-deploy:
     jobs:
@@ -68,6 +70,7 @@ workflows:
           deploy: false
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
       - deploy:
+          context: dockerhub
           requires:
             - lint
             - test
