@@ -52,7 +52,8 @@ jobs:
     docker:
       - image: cimg/base:2022.08
     environment:
-      IMAGE_NAME: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      # IMAGE_NAME: "$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME"
+      IMAGE_NAME: funkycadet/gitstars
     steps:
       - checkout
       - run:
