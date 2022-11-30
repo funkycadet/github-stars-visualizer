@@ -1,7 +1,13 @@
 # Image to be used
 FROM python:3.8-slim-buster
 
-# ENV PORT=8000
+EXPOSE 5000
+
+# Keeps Python from generating .pyc files in the container.
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
 # install system dependencies
 RUN apt-get update && apt-get install -y curl
@@ -20,4 +26,6 @@ COPY pyproject.toml poetry.lock ./
 
 RUN poetry install --no-dev --no-root
 
-COPY ./server /server
+COPY . /server
+
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:server"]
