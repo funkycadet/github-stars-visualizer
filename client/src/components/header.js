@@ -1,14 +1,25 @@
 import React from 'react'
-// import {starsLogo} from '../images/logo.svg'
+import starsLogo from '../images/logo.svg'
+import { useState } from 'react';
 
 export const Header = () => {
+    const [shadow, setShadow] = useState(false);
+    function addShadow(){
+      if (window.scrollY >= 22){
+        setShadow(true);
+      }else {
+        setShadow(false);
+      }
+    }
+    window.addEventListener("scroll", addShadow);
+
   return (
-      <div className='flex justify-between items-center flex-row w-100% h-10 relative'>
-            <h1 className='text-4xl font-bold'>
+      <div className={shadow ? 'header shadow' : 'header'}>
+            <h1 className='text-4xl font-bold inline flex flex-row items-center'>
                 GitStars
-                {/* <span>
-                    <img src={starsLogo} alt="logo"/>
-                </span> */}
+                <span>
+                    <img className='mt-2 ml-1' src={starsLogo} alt="logo"/>
+                </span>
             </h1>
           <nav>
               <ul className='navlinks flex flex-row justify-evenly text-xl'>
