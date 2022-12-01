@@ -149,10 +149,28 @@ body{
 }
 
 .about-section{
- /* background-image: url(); */
- height: 15rem;
+ height: 28rem;
+ /* background-color: #f3f4f6; */
+ margin-top: -2rem;
+ padding: 3rem;
+}
+
+.about-section > h1 {
+  color:#053BED;
+  letter-spacing: 0.4rem;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .blankDiv{
-  height: 16.4rem;
+  height: 24rem;
+}
+
+.graph-container{
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  background-color:#fff;
+  height: 20em;
+  width: 20em;
+  border-radius: 2em;
 }
