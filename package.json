@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "download": "^8.0.0"
+  },
+  "name": "github-stars-visualizer",
+  "description": "A web service that allows you to visualize top starred projects on Github.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/funkycadet/github-stars-visualizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/funkycadet/github-stars-visualizer/issues"
+  },
+  "homepage": "https://github.com/funkycadet/github-stars-visualizer#readme"
+}
