@@ -24,8 +24,10 @@ WORKDIR /server
 # Copy poetry.lock* in case it doesn't exist in the repo
 COPY pyproject.toml poetry.lock ./
 
+ENV PYTHONPATH=/server
+
 RUN poetry install --no-dev --no-root
 
 COPY . /server
 
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "main:server"]
+ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:5000", "main:server"]
