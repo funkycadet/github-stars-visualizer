@@ -1,0 +1,34 @@
+version: "3.3"
+services:
+
+  backend:
+    image: 'server:${TAG-latest}'
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - SERVER_NAME=localhost
+      - SERVER_HOST=https://localhost
+      - PROJECT_NAME=github-data-visualizer
+      - FLASK_DEBUG=production
+    # command: sh -c "gunicorn --bind 0.0.0.0:5000 main:server"
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    volumes:
+      - ./server:/server
+
+  # frontend:
+  #   image: 'client:${TAG-latest}'
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - backend
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./client:/client
