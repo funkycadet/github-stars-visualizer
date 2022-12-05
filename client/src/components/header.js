@@ -1,6 +1,9 @@
 import React from 'react'
+// image import
 import starsLogo from '../images/logo.svg'
 import { useState } from 'react';
+// import from react-router
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
     const [shadow, setShadow] = useState(false);
@@ -18,15 +21,15 @@ export const Header = () => {
             <h1 className='text-4xl font-bold inline flex flex-row items-center'>
                 GitStars
                 <span>
-                    <img className='mt-2 ml-1' src={starsLogo} alt="logo"/>
+                    <img className='mt-2 ml-1' src={starsLogo} alt="logo" height="2rem"/>
                 </span>
             </h1>
           <nav>
               <ul className='navlinks flex flex-row justify-evenly text-xl'>
-                  <li>Home</li>
-                  <li>Explore</li>
-                  <li>About</li>
-                  <li>Contact Us</li>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/explore">Explore</Link></li>
+                  <li><Link to="/about">About</Link></li>
+                  <li><Link to="/contact">Contact us</Link></li>
               </ul>
           </nav>
       </div>

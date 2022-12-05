@@ -23,6 +23,7 @@ body{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 }
 
 .header.shadow{
@@ -173,4 +174,23 @@ body{
   height: 20em;
   width: 20em;
   border-radius: 2em;
+}
+
+.explore-container {
+  margin-top: 4.2rem;
+  padding: 2rem;
+}
+
+.about-container{
+  margin-top: 4.2rem;
+  padding: 2rem;
+}
+
+.contact-container{
+  margin-top: 4.2rem;
+  padding: 2rem;
+}
+
+#error-image{
+  height: 18rem;
 }

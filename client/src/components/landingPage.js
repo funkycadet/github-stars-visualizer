@@ -1,4 +1,6 @@
 import React from 'react'
+// import for header component
+import {Header} from './header'
 // images for hero section
 import search from '../images/search.svg';
 import explore from '../images/explore.svg';
@@ -8,18 +10,23 @@ import line from '../images/horizontal-line.svg';
 import bar from '../images/bar-chart.svg';
 import linechart from '../images/line-chart.svg';
 import pie from '../images/pie-chart.svg';
+// import for react router
+import { useNavigate } from 'react-router-dom';
 
 
 
 export const LandingPage = () => {
+  const navigate = useNavigate();
   return (
+    <>
+    <Header/>
     <div className=' space-y-20'>
       <article className='hero-section h-screen mb-10 space-y-14'>
         <h1 className='hero-leading text-6xl font-bold'>
           Explore like never before <br></br>
           Made for Developers, <span id='hero-span'>by Developers.</span>
         </h1>
-        <button className='explore-button'>
+        <button className='explore-button' onClick={()=>navigate('/explore')}>
           Get Started
         </button>
       </article>
@@ -76,12 +83,13 @@ export const LandingPage = () => {
         </div>
       </article>
       <div className='text-center'>
-        <button className='explore-button'>
+        <button className='explore-button' onClick={()=>navigate('/explore')}>
           Get Started
         </button>
       </div>
 
     </div>
+    </>
   )
 }
 
