@@ -187,10 +187,28 @@ body{
 }
 
 .contact-container{
-  margin-top: 4.2rem;
+  margin-top: 4rem;
   padding: 2rem;
+  height: 100vh;
+  background-color: #edf2fb;
 }
 
 #error-image{
   height: 18rem;
+}
+
+.form-container{
+  height: auto;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 1rem;
+  padding: 1.2rem;
+}
+
+.left-form{
+  background-color: #edf2fb;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem;
+
 }

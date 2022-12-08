@@ -9,7 +9,7 @@ import {Routes, Route} from "react-router-dom"
 
 function App() {
   return (
-    <div className="App mx-14 my-6 w-100%">
+    <div className="App w-100%">
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/explore' element={<Explore/>}/>
